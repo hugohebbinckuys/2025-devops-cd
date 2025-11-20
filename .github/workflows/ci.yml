@@ -27,4 +27,4 @@ jobs:
       - name: install mvnw 
         run: mvn -N wrapper:wrapper
       - name: build project
-        run: mvnw clean package
+        run: ./mvnw clean package
