@@ -28,3 +28,5 @@ jobs:
         run: mvn -N wrapper:wrapper
       - name: build project
         run: ./mvnw clean package
+      - name: run unit-tests 
+        run: ./mvnw test
