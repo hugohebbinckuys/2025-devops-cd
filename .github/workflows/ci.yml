@@ -1,0 +1,30 @@
+#en-tete 
+name: Java CLI with mvnw - devops tp3
+
+#declencheurs 
+on: 
+  push: 
+    branches: main
+  pull_request: 
+    branches: main
+  workflow_dispatch: 
+  
+#variables globales SI il y en a
+
+#liste des jobs
+jobs: 
+  unit-tests: 
+    runs-on: ubuntu:latest
+    steps: 
+      - name: checkout-code
+        uses: actions/checkout@v4
+      - name: setup jdk 
+        uses: actions/setup-java@v5
+        with: 
+          distribution: 'temurin'
+          java-version: '21'
+          #on github marketplace > setup java..
+      - name: install mvnw 
+        run: mvn -N wrapper:wrapper
+      - name: build project
+        run: mvnw clean package
