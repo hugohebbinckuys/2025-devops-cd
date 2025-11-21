@@ -11,7 +11,6 @@ on:
   
 #variables globales SI il y en a
 
-#liste des jobs
 jobs: 
   unit-tests: 
     runs-on: ubuntu-latest
@@ -30,3 +29,27 @@ jobs:
         run: ./mvnw clean package
       - name: run unit-tests 
         run: ./mvnw test
+
+  #peut etre faire les test de documentation avant de push la doc sur netlifyu 
+
+  doc-on-netlify:
+    runs-on: ubuntu-latest
+    steps: 
+      - name: checkout-code
+        uses: actions/checkout@v4
+      - name: setup jdk 
+        uses: actions/setup-java@v5
+        with: 
+          distribution: 'temurin'
+          java-version: '21'
+      - name: build-doc
+        run: mvn javadoc:javadoc
+      - name: install-node
+        run: apt update && apt install nodejs npm
+      - name: install-netlify
+        run: npm install -g netlify-cli
+      - name: deploy-doc-on-netlify
+        run: netlify deploy --prod --dir=target/site/apidocs
+        env: 
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN}}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID}}
