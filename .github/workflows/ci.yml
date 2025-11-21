@@ -3,9 +3,9 @@ name: Java CLI with mvnw - devops tp3
 
 #declencheurs 
 on: 
-  push
-  pull_request
-  workflow_dispatch
+  push:
+  pull_request:
+  workflow_dispatch:
   
 #variables globales SI il y en a
 
