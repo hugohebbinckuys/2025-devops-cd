@@ -49,7 +49,7 @@ jobs:
       - name: install-netlify
         run: npm install -g netlify-cli
       - name: deploy-doc-on-netlify
-        run: netlify deploy --prod --dir=target/site/apidocs
+        run: netlify deploy --prod --dir=target/reports/apidocs
         env: 
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN}}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID}}
