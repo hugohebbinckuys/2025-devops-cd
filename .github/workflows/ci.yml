@@ -28,6 +28,11 @@ jobs:
       - name: run unit-tests 
         run: ./mvnw test
 
+    check-image-build: 
+      steps: 
+        - name: test building the app 
+        - run: docker build -t tp3-java:test .
+
   #faire les test de documentation dans le job de tests
   #faire les tests 
 
