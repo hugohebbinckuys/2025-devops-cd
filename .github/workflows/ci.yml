@@ -60,7 +60,7 @@ jobs:
           deploy-hook: ${{ secrets.RENDER_DEPLOY_HOOK_URL }}
           image-url: hugohebbinckuys/devops-java-tp:main
           render-api-key: ${{ secrets.RENDER_API_KEY }}
-          wait-fior-deployment: true
+          wait-for-deployment: true
 
 
   image-to-docker-hub: 
