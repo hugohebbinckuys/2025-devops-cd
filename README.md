@@ -1,3 +1,5 @@
+[![Java CLI with mvnw - devops tp3](https://github.com/hugohebbinckuys/2025-devops-cd/actions/workflows/ci.yml/badge.svg)](https://github.com/hugohebbinckuys/2025-devops-cd/actions/workflows/ci.yml)
+
 # Hello!! This is a spring boot app!
 
 This app is simple. It connects to a postgres database and says if the database works.
