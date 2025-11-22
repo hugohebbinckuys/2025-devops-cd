@@ -51,6 +51,26 @@ jobs:
 
 # now CD : 
 
+  image-to-docker-hub: 
+    if: github.refs == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps: 
+      - name: login to docker hub
+        uses: docker/login-action@v3
+        with: 
+          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_TOKEN }}
+      - name: setup QEMU 
+        uses: docker/setup-qemu-action@v3
+      - name: setup docker buildx 
+        uses: docker/setup-buildx-action@v3
+      - name: build and push 
+        uses: docker/build-push-action@v6
+        with: 
+          push: true
+          tags: hugohebbinckuys/devops-java-tp:main
+      
+
   doc-on-netlify:
     if: github.refs == 'refs/heads/main'
     runs-on: ubuntu-latest
