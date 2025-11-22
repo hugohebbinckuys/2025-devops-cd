@@ -52,7 +52,7 @@ jobs:
 # now CD : 
 
   image-to-docker-hub: 
-    if: github.refs == 'refs/heads/main'
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps: 
       - name: login to docker hub
@@ -71,7 +71,7 @@ jobs:
           tags: hugohebbinckuys/devops-java-tp:main
 
   doc-on-netlify:
-    if: github.refs == 'refs/heads/main'
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps: 
       - name: checkout-code
