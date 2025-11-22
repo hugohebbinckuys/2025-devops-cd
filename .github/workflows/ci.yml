@@ -36,7 +36,20 @@ jobs:
       - name: test building the app 
         run: docker build -t tp3-java:test .
 
+  check-doc-build: 
+    runs-on: ubuntu-latest
+    steps: 
+      - name: get-code
+        run: action/checkout@v4
+      - name: setup java
+        uses: actions/setup-java@v5
+        with: 
+          distirbution: 'temurin'
+          java-version: '21'
+      - name: test build doc
+        run: mvn javadoc:javadoc
 
+# now CD : 
 
   doc-on-netlify:
     if: github.refs == 'refs/heads/main'
