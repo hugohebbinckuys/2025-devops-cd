@@ -9,7 +9,7 @@ on:
   
 #variables globales SI il y en a
 
-job: 
+jobs: 
   unit-tests: 
     runs-on: ubuntu-latest
     steps: 
