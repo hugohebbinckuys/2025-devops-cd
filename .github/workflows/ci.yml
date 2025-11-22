@@ -52,6 +52,7 @@ jobs:
 # now CD : 
 
   app-deployment-on-render: 
+    needs: [unit-tests, check-image-build]
     runs-on: ubuntu-latest
     steps: 
       - name: deploy to render
@@ -64,6 +65,7 @@ jobs:
 
 
   image-to-docker-hub: 
+    needs: [unit-tests, check-image-build]
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps: 
@@ -83,6 +85,7 @@ jobs:
           tags: hugohebbinckuys/devops-java-tp:main
 
   doc-on-netlify:
+    needs: [unit-tests, check-image-build, check-doc-build]
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps: 
