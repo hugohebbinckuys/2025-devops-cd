@@ -9,9 +9,9 @@ on:
   
 #variables globales SI il y en a
 
-jobs: 
+job: 
   unit-tests: 
-    runs-on: ubuntu-latost
+    runs-on: ubuntu-latest
     steps: 
       - name: checkout-code
         uses: actions/checkout@v4
