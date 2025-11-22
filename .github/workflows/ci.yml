@@ -69,7 +69,6 @@ jobs:
         with: 
           push: true
           tags: hugohebbinckuys/devops-java-tp:main
-      
 
   doc-on-netlify:
     if: github.refs == 'refs/heads/main'
