@@ -3,11 +3,9 @@ name: Java CLI with mvnw - devops tp3
 
 #declencheurs 
 on: 
-  push: 
-    branches: main
-  pull_request: 
-    branches: main
-  workflow_dispatch: 
+  push:
+  pull_request:
+  workflow_dispatch:
   
 #variables globales SI il y en a
 
@@ -30,9 +28,31 @@ jobs:
       - name: run unit-tests 
         run: ./mvnw test
 
-  #peut etre faire les test de documentation avant de push la doc sur netlifyu 
+  check-image-build: 
+    runs-on: ubuntu-latest
+    steps: 
+      - name: get code 
+        uses: actions/checkout@v4
+      - name: test building the app 
+        run: docker build -t tp3-java:test .
+
+  check-doc-build: 
+    runs-on: ubuntu-latest
+    steps: 
+      - name: get-code
+        uses: actions/checkout@v4
+      - name: setup java
+        uses: actions/setup-java@v5
+        with: 
+          distribution: 'temurin'
+          java-version: '21'
+      - name: test build doc
+        run: mvn javadoc:javadoc
+
+# now CD : 
 
   doc-on-netlify:
+    if: github.refs == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps: 
       - name: checkout-code
