@@ -51,6 +51,18 @@ jobs:
 
 # now CD : 
 
+  app-deployment-on-render: 
+    runs-on: ubuntu-latest
+    steps: 
+      - name: deploy to render
+        uses: gh-actions-workflows/deploy-docker-render@v1.1
+        with: 
+          deploy-hook: ${{ secrets.RENDER_DEPLOY_HOOK_URL }}
+          image-url: hugohebbinckuys/devops-java-tp:main
+          render-api-key: ${{ secrets.RENDER_API_KEY }}
+          wait-fior-deployment: true
+
+
   image-to-docker-hub: 
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
